@@ -21,7 +21,7 @@ public class Produit {
         return numProduit;
     }
 
-    // question 2
+    // question 1
     public void setPasEnchere(double pas) {
         pasEnchere = pas;
     }
@@ -34,6 +34,7 @@ public class Produit {
         throw new RuntimeException("Méthode non implémentée ! Effacez cette ligne et écrivez le code nécessaire");
     }
 
+    // pré-requis : l'offre passée en paramètre est valide
     public void ajouterOffre(OffreEnchere o) {
         throw new RuntimeException("Méthode non implémentée ! Effacez cette ligne et écrivez le code nécessaire");
     }
