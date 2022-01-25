@@ -1,5 +1,7 @@
 package fr.umontpellier.iut;
 
+import java.util.Objects;
+
 public class Produit {
     private int numProduit;
     private String descriptionProduit;
@@ -59,5 +61,18 @@ public class Produit {
     // vérifie si l'offre est valide
     public boolean verifierOffre(OffreEnchere offre) {
         throw new RuntimeException("Méthode non implémentée ! Effacez cette ligne et écrivez le code nécessaire");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Produit)) return false;
+        Produit produit = (Produit) o;
+        return getNumProduit() == produit.getNumProduit();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNumProduit());
     }
 }
