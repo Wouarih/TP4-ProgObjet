@@ -3,15 +3,15 @@ package fr.umontpellier.iut;
 public class Produit {
     private int numProduit;
     private String descriptionProduit;
-    private double prixCourant;
+    private final double prixInitial;
     private double pasEnchere;
     private double coutParticipation;
 
     private boolean disponible;
 
-    public Produit(int numProduit, String descriptionProduit, double prixCourant, double coutParticipation) {
+    public Produit(int numProduit, String descriptionProduit, double prixInitial, double coutParticipation) {
         this.descriptionProduit = descriptionProduit;
-        this.prixCourant = prixCourant;
+        this.prixInitial = prixInitial;
         this.coutParticipation = coutParticipation;
         this.numProduit = numProduit;
         disponible = false;
@@ -31,6 +31,11 @@ public class Produit {
     }
 
     public void arreterEnchere() {
+        throw new RuntimeException("Méthode non implémentée ! Effacez cette ligne et écrivez le code nécessaire");
+    }
+
+    // question 5
+    public double getPrixEnCours(){
         throw new RuntimeException("Méthode non implémentée ! Effacez cette ligne et écrivez le code nécessaire");
     }
 
