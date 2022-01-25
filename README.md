@@ -1,3 +1,41 @@
+# ![](ressources/logo.jpeg)
+
+# Développement Orienté Objets
+
+### IUT Montpellier-Sète – Département Informatique
+
+* [**Support de cours**](https://gitlabinfo.iutmontp.univ-montp2.fr/dev-objets/Ressources)
+* **Enseignants:**
+  [Marin Bougeret](mailto:marin.bougeret@umontpellier.fr),
+  [Gaëlle Hisler](mailto:gaelle.hisler@umontpellier.fr),<!--[Sophie Nabitz](mailto:sophie.nabitz@univ-avignon.fr),-->
+  [Victor Poupet](mailto:victor.poupet@umontpellier.fr),
+  [Gilles Trombettoni](mailto:gilles.trombettoni@umontpellier.fr),
+  [Petru Valicov](mailto:petru.valicov@umontpellier.fr)
+* Le [forum Piazza](https://piazza.com/class/kyo4oooauez252) de ce cours pour poser vos questions
+* [Email](mailto:petru.valicov@umontpellier.fr) pour une question d'ordre privée concernant le cours.
+* Le [sujet du TP](https://www.lirmm.fr/~pvalicov/Cours/M2103/TP4.pdf) en format .pdf téléchargeable et imprimable.
+
+<!--Avant de démarrer le TP, vérifiez que vous n'avez pas atteint votre quota d'espace de stockage autorisé :
+
+* placez-vous dans votre `$HOME` et utilisez les commandes suivantes :
+    * `du -sh` pour voir combien d'espace vous avez déjà utilisé
+    * `du -sh *` pour voir combien d'espace vous avez déjà utilisé pour chaque fichier (sans fichiers cachés)
+    * `du -sch .[!.]* *` pour voir combien d'espace vous avez déjà utilisé pour chaque fichier, y compris les fichiers cachés
+* Supprimez les fichiers inutiles.
+* Pour éviter des problèmes durant vos TPs d'informatique, vous devriez toujours **garder 300-400 Mo d'espace libre**.
+-->
+
+### Consignes
+- Sauf indication contraire, **tous** les attributs que vous allez déclarer dans ce TP (et dans les TPs qui suivent) doivent être privés (`private`).
+- A priori, la plupart des méthodes devraient être déclarées publiques (`public`). Vous pouvez tout de même déclarer et utiliser des méthodes `private` du moment qu'elles vous sont utiles et que votre programme fonctionne correctement.
+- Essayez de respecter les conventions de nommage *Java* (voir la fin des transparents du [cours](https://www.lirmm.fr/~pvalicov/Cours/M2103/BPOO_Generalites_x4.pdf) ou disponibles sur le site d'Oracle).
+- **Sauf indication contraire, vous ne devrez pas modifier la signature des méthodes et des attributs des classes qui vous sont proposées.**
+- Date limite de rendu de votre code sur le dépôt GitHub : **dimanche 20 février à 23 h 00**.
+
+
+## TP 4 : Systèmes d'enchères
+#### _Thème : encapsulation, cycle de vie d'une application orientée objet_
+
 Vous êtes chargé de développer le système d'enchères **iBaille**. Pour avoir une idée globale du système,
 voici le principe général de fonctionnement :
 
