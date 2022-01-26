@@ -63,6 +63,9 @@ public class Produit {
         throw new RuntimeException("Méthode non implémentée ! Effacez cette ligne et écrivez le code nécessaire");
     }
 
+
+    // fonction permettant la comparaison des Produits
+    // cette fonction doit rester intacte
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,6 +74,8 @@ public class Produit {
         return getNumProduit() == produit.getNumProduit();
     }
 
+    // fonction auxiliaire définissant le hashCode des objets de type Produit en respectant le contrat de equals(Object o)
+    // cette fonction doit rester intacte
     @Override
     public int hashCode() {
         return Objects.hash(getNumProduit());
