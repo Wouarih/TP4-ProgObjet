@@ -30,6 +30,7 @@
 - A priori, la plupart des méthodes devraient être déclarées publiques (`public`). Vous pouvez tout de même déclarer et utiliser des méthodes `private` du moment qu'elles vous sont utiles et que votre programme fonctionne correctement.
 - Essayez de respecter les conventions de nommage *Java* (voir la fin des transparents du [cours](https://www.lirmm.fr/~pvalicov//Cours/dev-objets/Generalites_x4.pdf) ou disponibles sur le site d'Oracle).
 - **Sauf indication contraire, vous ne devrez pas modifier la signature des méthodes et des attributs des classes qui vous sont proposées.**
+- **Pensez à écrire des tests unitaires pour les différentes méthodes implémentées**
 - Date limite de rendu de votre code sur le dépôt GitHub : **dimanche 20 février à 23 h 00**.
 
 
@@ -71,8 +72,7 @@ Un squelette du code vous est fourni avec quelques classes de tests unitaires. P
 * le produit est ouvert aux enchères
 * le produit de l'offre **o** est bien le même que le produit courant qui reçoit **o**
 * si **o** est la première offre, alors il faut que **p<sub>o</sub>**  &ge; **c**
-* si **o** n'est pas la première offre (dans ce cas **c** correspond au prix courant de l'offre actuellement gagnante), alors il faut que **p<sub>o</sub>  &ge; c + &delta;**
-
+* si **o** n'est pas la première offre (dans ce cas **c** correspond au prix courant de l'offre actuellement gagnante), alors il faut que **p<sub>o</sub>  &ge; c + &delta;**, où **&delta;** est le pas d'enchère.
 
 6. Implémentez la méthode `boolean verifierOffre(OffreEnchere offre)` de la classe `Produit`, qui vérifie si une offre est correcte.
 
@@ -83,9 +83,7 @@ on dit que **o** est **valide** si toutes les conditions suivantes sont respect�
 * **M<sub>o</sub>** &ge; **p<sub>o</sub>**
 * **o** est une offre correcte pour le produit
 
-7. Écrivez le code de la méthode `public OffreEnchere creerOffre(Produit produit, double prixCourant, double prixMax)` de la classe `Compte` qui, à partir de ses paramètres, instancie et retourne une offre si celle-ci est **valide** avec ces paramètres. Également, si l'offre est valide, la méthode devra débiter le compte de `prixMax` + le coût de participation de le produit. La méthode doit retourner `null` si l'offre n'est pas valide.
-
-   **Pensez à écrire des tests unitaires (beaucoup de tests unitaires !) pour les différentes méthodes implémentées pour cette fonction...**
+7. Écrivez le code de la méthode `public OffreEnchere creerOffre(Produit produit, double prixCourant, double prixMax)` de la classe `Compte` qui, à partir de ses paramètres, instancie et retourne une offre si celle-ci est **valide**. Également, si l'offre est valide, la méthode devra débiter le compte de `prixMax` + le coût de participation du produit. La méthode doit retourner `null` si l'offre n'est pas valide.
 
 Passons maintenant à la gestion des coûts liés à la création d'offres. Comme vous l'avez remarqué dans la question précédente, dès qu'un compte
 créé une offre valide, alors le compte est directement débité de **M<sub>o</sub>**+**c<sub>p</sub>**. L'idée derrière ce débit immédiat est de s'assurer qu'un compte
@@ -97,7 +95,7 @@ Ainsi, si une offre s'avère gagnante, alors nul besoin de rembourser, mais dans
 Nous allons maintenant implémenter la méthode la plus importante, qui va gérer la concurrence entre plusieurs offres valides pour un produit fixé.
 Voici les règles permettant de déterminer si une nouvelle offre valide est gagnante ou non, et de fixer la nouvelle valeur du prix courant.
 
-* Considérons un produit. Quand une nouvelle offre (supposée valide) **o2** (de prix courant **p<sub>o2</sub>** et maximum **M<sub>o2</sub>**) arrive pour ce produit
+Considérons un produit. Quand une nouvelle offre (supposée valide) **o2** (de prix courant **p<sub>o2</sub>** et maximum **M<sub>o2</sub>**) arrive pour ce produit
     * si ce n'est pas la première enchère, alors notons **p<sub>o1</sub>** et **M<sub>o1</sub>** le prix courant et maximum de l'offre gagnante actuelle.
         * si **M<sub>o1</sub>** &ge; **M<sub>o2</sub>**, alors le gagnant ne change pas et la valeur **p<sub>o</sub>** est actualisée à **M<sub>o2</sub>** ;
         * si **M<sub>o1</sub>** < **M<sub>o2</sub>**, alors la nouvelle enchère est désignée comme gagnante, et la valeur **p<sub>o</sub>** est actualisée à max **(M<sub>o1</sub>, p<sub>o2</sub>)** ;
@@ -105,8 +103,6 @@ Voici les règles permettant de déterminer si une nouvelle offre valide est gag
 
 
 On remarque qu'un utilisateur peut déposer une nouvelle offre d'enchère sur le même produit sur lequel il a déjà déposé une offre d'enchère. Par exemple, il pourra le faire si son offre a été "battue" par un autre enchérisseur.
-<!--    Par définition, le gagnant est celui dont le prix courant est supérieur au prix maximal proposé par tous les autres enchérisseurs.
--->
 
 
 9. Implémentez la méthode `void ajouterOffre(OffreEnchere o)` de la classe `Produit` qui, étant donnée une nouvelle offre `o` (supposée valide, et pour le même produit), effectue les actions suivantes :
@@ -118,9 +114,6 @@ On remarque qu'un utilisateur peut déposer une nouvelle offre d'enchère sur le
    **Remarque :** nul besoin de vérifier ici si l'offre est valide, à l'utilisation de la méthode `void ajouterOffre(OffreEnchere o)` on suppose l'objet `o` comme étant valide.
 
    **Remarque :** vous pouvez ajouter des méthodes auxiliaires qui vous paraissent nécessaires.
-
-   **Remarque :** écrire des tests unitaires pour cette fonction et toutes les fonctions auxiliaires est fortement conseillé.
-
 
 10. Implémentez la méthode `void demarrerEnchere()` de `Produit` pour qu'elle rende l'objet disponible.
     Implémentez également la méthode réciproque `void arreterEnchere()`, qui en plus de rendre l'objet indisponible, va rembourser le compte lié à l'offre gagnante `o` de **M<sub>o</sub>** - **c**, où **c** est le prix courant de l'objet (qui correspond donc au moment de la cloture au prix auquel l'objet va partir).
