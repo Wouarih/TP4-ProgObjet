@@ -3,7 +3,7 @@ package fr.umontpellier.iut;
 import java.util.Objects;
 
 public class Produit {
-    private int numProduit;
+    private final int numProduit;
     private String descriptionProduit;
     private final double prixInitial;
     private double pasEnchere;
@@ -58,7 +58,7 @@ public class Produit {
         return disponible;
     }
 
-    // vérifie si l'offre est valide
+    // vérifie si l'offre est correcte
     public boolean verifierOffre(OffreEnchere offre) {
         throw new RuntimeException("Méthode non implémentée ! Effacez cette ligne et écrivez le code nécessaire");
     }
@@ -69,8 +69,7 @@ public class Produit {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Produit)) return false;
-        Produit produit = (Produit) o;
+        if (!(o instanceof Produit produit)) return false;
         return getNumProduit() == produit.getNumProduit();
     }
 

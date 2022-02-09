@@ -48,9 +48,9 @@ voici le principe général de fonctionnement :
 
 Un squelette du code vous est fourni avec quelques classes de tests unitaires. Prenez le temps de le lire et de le comprendre car vous aurez à le compléter en y ajoutant des méthodes et des attributs qui vous paraissent nécessaires. Discutez avec votre enseignant avant de démarrer le travail.
 
-1. Quelque chose a été oublié dans la classe `Produit` : comme indiqué précédemment, le pas d'enchère doit être le même pour tous les produits mais modifiable par l'utilisateur. Modifiez la déclaration de cet attribut afin de satisfaire cette contrainte. Doit-on modifier également la méthode `void setPasEnchere()` ?
+1. Quelque chose a été oublié dans la classe `Produit` : comme indiqué précédemment, le pas d'enchère doit être systématiquement le même pour tous les produits, mais modifiable par l'utilisateur. Changez la déclaration de cet attribut afin de satisfaire cette contrainte. Doit-on modifier également la méthode `void setPasEnchere()` ? Justifiez.
 
-   **Remarque** : ne pas confondre la notion d'_utilisateur du logiciel_ (non-informaticien) et l'_utilisateur-programmeur_ qui est censé se servir de votre application pour poursuivre son développement, pour sa maintenance, le débuggage etc. Ici l'utilisateur c'est l'informaticien.
+   **Remarque** : ne pas confondre la notion d'_utilisateur du logiciel_ (non-informaticien) et l'_utilisateur-programmeur_ qui est censé se servir de votre application pour poursuivre son développement, pour sa maintenance, le débuggage etc. Dans ce cours l'utilisateur c'est l'informaticien.
 
 1. Complétez la classe `Compte` en y ajoutant une méthode qui permet de créditer le compte avec une somme donnée. Cette somme pourra éventuellement être négative, ce qui permettra alors de retirer de l'argent du compte.
 
@@ -78,6 +78,7 @@ Un squelette du code vous est fourni avec quelques classes de tests unitaires. P
 
 Étant donné un compte (ayant un solde **s**), et une offre **o** (de prix courant **p<sub>o</sub>** et maximum **M<sub>o</sub>**)  pour un produit (de coût de participation **c<sub>p</sub>**),
 on dit que **o** est **valide** si toutes les conditions suivantes sont respectées :
+
 *  **s**  &ge; **M<sub>o</sub>** + **c<sub>p</sub>**
 * **M<sub>o</sub>** &ge; **p<sub>o</sub>**
 * **o** est une offre correcte pour le produit
