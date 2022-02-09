@@ -13,7 +13,7 @@ class CompteTest {
 
     @BeforeEach
     public void init(){
-        compte = new Compte("toto","toto@gmail.com","99 av. occitanie", 100);
+        compte = new Compte("toto", 100);
         produit = new Produit(0, "", 0, 152);
     }
 

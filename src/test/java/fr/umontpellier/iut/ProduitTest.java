@@ -15,7 +15,7 @@ class ProduitTest {
     @BeforeEach
     public void initialisation() {
         produit = new Produit(0, "", 0, 152);
-        compte = new Compte("toto", "lolo@fifi.com", "1 av. champs elysees", 59);
+        compte = new Compte("toto", 59);
         o = new OffreEnchere(15, 20, produit, compte);
         produit.setPasEnchere(2);
         produit.demarrerEnchere();

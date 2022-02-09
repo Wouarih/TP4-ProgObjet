@@ -4,15 +4,11 @@ import java.util.ArrayList;
 
 public class Compte {
     private String pseudo;
-    private String email;
-    private String adresse;
     private double solde;
     private ArrayList<OffreEnchere> mesEncheres;
     private ArrayList<Produit> produitsAchetés;
 
-    public Compte(String pseudo, String email, String adresse, double solde) {
-        this.email = email;
-        this.adresse = adresse;
+    public Compte(String pseudo, double solde) {
         this.pseudo = pseudo;
         this.solde = solde;
         mesEncheres = new ArrayList<>();
