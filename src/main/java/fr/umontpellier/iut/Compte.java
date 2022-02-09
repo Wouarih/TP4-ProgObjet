@@ -8,6 +8,7 @@ public class Compte {
     private String adresse;
     private double solde;
     private ArrayList<OffreEnchere> mesEncheres;
+    private ArrayList<Produit> produitsAchetés;
 
     public Compte(String pseudo, String email, String adresse, double solde) {
         this.email = email;
@@ -15,6 +16,7 @@ public class Compte {
         this.pseudo = pseudo;
         this.solde = solde;
         mesEncheres = new ArrayList<>();
+        produitsAchetés = new ArrayList<>();
     }
 
     public double getSolde() {
