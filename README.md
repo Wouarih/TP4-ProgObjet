@@ -88,9 +88,9 @@ on dit que **o** est **valide** si toutes les conditions suivantes sont respect�
 Passons maintenant à la gestion des coûts liés à la création d'offres. Comme vous l'avez remarqué dans la question précédente, dès qu'un compte
 créé une offre valide, alors le compte est directement débité de **M<sub>o</sub>**+**c<sub>p</sub>**. L'idée derrière ce débit immédiat est de s'assurer qu'un compte
 qui proposerait des offres sur de nombreux produits en parallèle aurait de quoi toutes les payer s'il était vainqueur sur tous ces produits.
-Ainsi, si une offre s'avère gagnante, alors nul besoin de rembourser, mais dans le cas contraire, lorsqu'une offre est déclarée perdante, il faut rembourser **M<sub>o</sub>** sur le compte correspondant.
+Par conséquent, si une offre s'avère perdante, alors il faut rembourser **M<sub>o</sub>** sur le compte correspondant (sinon, c'est du vol !). En revanche, si l'offre est déclarée gagnante, alors il faut rembourser la différence entre **M<sub>o</sub>** est le prix du produit au moment de la clôture de l'enchère.
 
-8. Implémentez la méthode `setEtatGagnant(boolean etat)` de la classe `OffreEnchere`. On utilisera cette méthode pour faire basculer une enchère à un état (gagnante ou perdante). Pensez à rembourser le compte en cas de passage à l'état perdant.
+8. Implémentez la méthode `setEtatGagnant(boolean etat)` de la classe `OffreEnchere`. On utilisera cette méthode pour faire basculer une enchère à un état (gagnante ou perdante). Elle effectuera le bon remboursement du compte en cas de passage à l'état perdant.
 
 Nous allons maintenant implémenter la méthode la plus importante, qui va gérer la concurrence entre plusieurs offres valides pour un produit fixé.
 Voici les règles permettant de déterminer si une nouvelle offre valide est gagnante ou non, et de fixer la nouvelle valeur du prix courant.
@@ -108,28 +108,29 @@ On remarque qu'un utilisateur peut déposer une nouvelle offre d'enchère sur le
 9. Implémentez la méthode `void ajouterOffre(OffreEnchere o)` de la classe `Produit` qui, étant donnée une nouvelle offre `o` (supposée valide, et pour le même produit), effectue les actions suivantes :
     * ajoute `o` à la liste d'offres d'enchères du produit ;
     * met à jour l'offre gagnante actuelle sur le produit (en déterminant si `o` est gagnante ou non, selon les règles ci-dessus) ;
-    * change l'état de l'offre gagnante (utiliser la méthode `setEtatGagnant(boolean etat)`) ;
-    * et qui dans le cas où `o` n'était pas la première enchère, et donc qu'il existe une offre qui va devenir perdante, change l'état de l'offre perdante (utiliser la méthode `setEtatGagnant(boolean etat)`), déclenchant ainsi son remboursement.
+    * change correctement l'état des offres en concurrence en "gagnante" ou "perdante", tout en déclenchant le remboursement du compte perdant (utiliser la méthode `setEtatGagnant(boolean etat)`).
 
    **Remarque :** nul besoin de vérifier ici si l'offre est valide, à l'utilisation de la méthode `void ajouterOffre(OffreEnchere o)` on suppose l'objet `o` comme étant valide.
 
    **Remarque :** vous pouvez ajouter des méthodes auxiliaires qui vous paraissent nécessaires.
 
 10. Implémentez la méthode `void demarrerEnchere()` de `Produit` pour qu'elle rende l'objet disponible.
-    Implémentez également la méthode réciproque `void arreterEnchere()`, qui en plus de rendre l'objet indisponible, va rembourser le compte lié à l'offre gagnante `o` de **M<sub>o</sub>** - **c**, où **c** est le prix courant de l'objet (qui correspond donc au moment de la cloture au prix auquel l'objet va partir).
-    Les enchères seront ouvertes et clôturées sur appel explicite de ces deux méthodes, et on supposera qu'une fois clôturée, une enchère ne sera jamais réouverte (ce pourrait poser des problèmes puisqu'il faudra à nouveau rebloquer la somme maximum sur le compte de l'offre gagnante).
+
+11. Implémentez la méthode réciproque `void arreterEnchere()`, qui en plus de rendre l'objet indisponible, va rembourser le compte lié à l'offre gagnante `o` de **M<sub>o</sub>** - **c**, où **c** est le prix courant de l'objet (qui correspond donc au prix auquel l'objet va partir au moment de la cloture).
+
+Les enchères seront ouvertes et clôturées sur appel explicite de `demarrerEnchere()` et `arreterEnchere()`. On supposera qu'une fois clôturée, une enchère ne sera jamais réouverte.
 
 
-11. Implémentez la méthode `getOffreGagnante()` de la classe `Produit`. Elle devra renvoyer la meilleure offre d'enchère, si elle existe, et `null` sinon.
+12. Implémentez la méthode `getOffreGagnante()` de la classe `Produit`. Elle devra renvoyer la meilleure offre d'enchère, si elle existe, et `null` sinon.
 
 
-12. Écrivez la méthode `toString()` appropriée dans la classe `Compte`. Libre à vous de décider les informations à retourner, mais en ce qui concerne les offres du compte, seules les offres gagnantes actuelles du compte devraient être affichées.
+13. Écrivez la méthode `toString()` appropriée dans la classe `Compte`. Libre à vous de décider les informations à retourner, mais en ce qui concerne les offres du compte, seules les offres gagnantes actuelles du compte devraient être affichées.
 
 
-13. Écrivez la méthode `toString()` appropriée dans la classe `Produit`. Parmi les différentes offres déposées, seule l'offre gagnante actuelle devrait être affichée.
+14. Écrivez la méthode `toString()` appropriée dans la classe `Produit`. Parmi les différentes offres déposées, seule l'offre gagnante actuelle devrait être affichée.
 
 
-14. Simulez votre application dans le programme principal (la classe `IBaille`). Pour cela, vous instancierez un produit et plusieurs comptes (3 au minimum). Pour chacun des comptes vous proposerez à l'utilisateur du logiciel (non-informaticien donc) de déposer des enchères pour ce produit en affichant les informations sur le produit et l'offre gagnante en cours.
+15. Simulez votre application dans le programme principal (la classe `IBaille`). Pour cela, vous instancierez un produit et plusieurs comptes (3 au minimum). Pour chacun des comptes vous proposerez à l'utilisateur du logiciel (non-informaticien donc) de déposer des enchères pour ce produit en affichant les informations sur le produit et l'offre gagnante en cours.
 
     Pour récupérer les données saisies par l'utilisateur à la console, vous pouvez utiliser la classe `java.util.Scanner` qui permet de "parser" de manière intelligente une chaîne de caractères. Voici un petit exemple de ce que vous pouvez faire avec :
 
@@ -161,4 +162,4 @@ On remarque qu'un utilisateur peut déposer une nouvelle offre d'enchère sur le
 
 
 
-15. Dessinez le diagramme de classes de votre application.
+16. Dessinez le diagramme de classes de votre application.
