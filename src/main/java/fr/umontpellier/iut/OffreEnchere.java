@@ -41,7 +41,7 @@ public class OffreEnchere {
                 ", heure=" + heure +
                 ", prixEnCours=" + prixEnCours +
                 ", prixMax=" + prixMax +
-                ", produit=" + produit.getNumProduit() +
+                ", produit=" + produit.getNumero() +
                 ", est gagnante  ? -> " + etatGagnant +
                 '}';
     }

@@ -3,24 +3,24 @@ package fr.umontpellier.iut;
 import java.util.Objects;
 
 public class Produit {
-    private final int numProduit;
-    private String descriptionProduit;
+    private final int numero;
+    private String description;
     private final double prixInitial;
     private double pasEnchere;
     private double coutParticipation;
 
     private boolean disponible;
 
-    public Produit(int numProduit, String descriptionProduit, double prixInitial, double coutParticipation) {
-        this.descriptionProduit = descriptionProduit;
+    public Produit(int numero, String description, double prixInitial, double coutParticipation) {
+        this.description = description;
         this.prixInitial = prixInitial;
         this.coutParticipation = coutParticipation;
-        this.numProduit = numProduit;
+        this.numero = numero;
         disponible = false;
     }
 
-    public int getNumProduit() {
-        return numProduit;
+    public int getNumero() {
+        return numero;
     }
 
     // question 1
@@ -70,13 +70,13 @@ public class Produit {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Produit produit)) return false;
-        return getNumProduit() == produit.getNumProduit();
+        return getNumero() == produit.getNumero();
     }
 
     // fonction auxiliaire définissant le hashCode des objets de type Produit en respectant le contrat de equals(Object o)
     // cette fonction doit rester intacte
     @Override
     public int hashCode() {
-        return Objects.hash(getNumProduit());
+        return Objects.hash(getNumero());
     }
 }

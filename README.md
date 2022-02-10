@@ -97,10 +97,10 @@ Nous allons maintenant implémenter la méthode la plus importante, qui va gére
 Voici les règles permettant de déterminer si une nouvelle offre valide est gagnante ou non, et de fixer la nouvelle valeur du prix courant.
 
 Considérons un produit. Quand une nouvelle offre (supposée valide) **o2** (de prix courant **p<sub>o2</sub>** et maximum **M<sub>o2</sub>**) arrive pour ce produit
-    * si ce n'est pas la première enchère, alors notons **p<sub>o1</sub>** et **M<sub>o1</sub>** le prix courant et maximum de l'offre gagnante actuelle.
-        * si **M<sub>o1</sub>** &ge; **M<sub>o2</sub>**, alors le gagnant ne change pas et la valeur **p<sub>o</sub>** est actualisée à **M<sub>o2</sub>** ;
-        * si **M<sub>o1</sub>** < **M<sub>o2</sub>**, alors la nouvelle enchère est désignée comme gagnante, et la valeur **p<sub>o</sub>** est actualisée à max **(M<sub>o1</sub>, p<sub>o2</sub>)** ;
-    * si aucune enchère n'a encore été déposée sur ce produit, alors la nouvelle offre est désignée comme gagnante
+* si ce n'est pas la première enchère, alors notons **p<sub>o1</sub>** et **M<sub>o1</sub>** le prix courant et maximum de l'offre gagnante actuelle.
+* si **M<sub>o1</sub>** &ge; **M<sub>o2</sub>**, alors le gagnant ne change pas et la valeur **p<sub>o</sub>** est actualisée à **M<sub>o2</sub>** ;
+* si **M<sub>o1</sub>** < **M<sub>o2</sub>**, alors la nouvelle enchère est désignée comme gagnante, et la valeur **p<sub>o</sub>** est actualisée à max **(M<sub>o1</sub>, p<sub>o2</sub>)** ;
+* si aucune enchère n'a encore été déposée sur ce produit, alors la nouvelle offre est désignée comme gagnante
 
 
 On remarque qu'un utilisateur peut déposer une nouvelle offre d'enchère sur le même produit sur lequel il a déjà déposé une offre d'enchère. Par exemple, il pourra le faire si son offre a été "battue" par un autre enchérisseur.
