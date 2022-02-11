@@ -4,18 +4,18 @@ import java.util.ArrayList;
 
 public class Compte {
     private String pseudo;
-    private double solde;
+    private int solde;
     private ArrayList<OffreEnchere> mesEncheres;
     private ArrayList<Produit> produitsAchetés;
 
-    public Compte(String pseudo, double solde) {
+    public Compte(String pseudo, int solde) {
         this.pseudo = pseudo;
         this.solde = solde;
         mesEncheres = new ArrayList<>();
         produitsAchetés = new ArrayList<>();
     }
 
-    public double getSolde() {
+    public int getSolde() {
         return solde;
     }
 

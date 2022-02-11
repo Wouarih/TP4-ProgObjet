@@ -1,13 +1,13 @@
 package fr.umontpellier.iut;
 
 public class OffreEnchere {
-    private double prixEnCours;
-    private double prixMax;
+    private int prixEnCours;
+    private int prixMax;
     private Produit produit;
     private boolean etatGagnant;
     private Compte monCompte;
 
-    public OffreEnchere(double prixEnCours, double prixMax, Produit produit, Compte monCompte) {
+    public OffreEnchere(int prixEnCours, int prixMax, Produit produit, Compte monCompte) {
         this.prixEnCours = prixEnCours;
         this.prixMax = prixMax;
         this.produit = produit;
@@ -15,11 +15,11 @@ public class OffreEnchere {
         this.monCompte = monCompte;
     }
 
-    public double getPrixEnCours() {
+    public int getPrixEnCours() {
         return prixEnCours;
     }
 
-    public double getPrixMax() {
+    public int getPrixMax() {
         return prixMax;
     }
 

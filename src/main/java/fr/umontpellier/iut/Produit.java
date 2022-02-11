@@ -5,13 +5,13 @@ import java.util.Objects;
 public class Produit {
     private final int numero;
     private String description;
-    private final double prixInitial;
-    private double pasEnchere;
-    private double coutParticipation;
+    private final int prixInitial;
+    private int pasEnchere;
+    private int coutParticipation;
 
     private boolean disponible;
 
-    public Produit(int numero, String description, double prixInitial, double coutParticipation) {
+    public Produit(int numero, String description, int prixInitial, int coutParticipation) {
         this.description = description;
         this.prixInitial = prixInitial;
         this.coutParticipation = coutParticipation;
@@ -24,7 +24,7 @@ public class Produit {
     }
 
     // question 1
-    public void setPasEnchere(double pas) {
+    public void setPasEnchere(int pas) {
         pasEnchere = pas;
     }
 
@@ -46,7 +46,7 @@ public class Produit {
         throw new RuntimeException("Méthode non implémentée ! Effacez cette ligne et écrivez le code nécessaire");
     }
 
-    public double getCoutParticipation() {
+    public int getCoutParticipation() {
         return coutParticipation;
     }
 
