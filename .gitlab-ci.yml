@@ -1,0 +1,14 @@
+stages:
+    - build
+    - test
+
+compilation:
+    stage: build
+    script:
+        - echo "Compilation du projet"
+        - mvn compile
+testing:
+    stage: test
+    script:
+        - echo "Vérification si les tests actifs passent"
+        - mvn test
