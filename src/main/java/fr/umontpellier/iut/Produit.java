@@ -23,6 +23,10 @@ public class Produit {
         return numero;
     }
 
+    public int getPasEnchere() {
+        return pasEnchere;
+    }
+
     // question 1
     public void setPasEnchere(int pas) {
         pasEnchere = pas;
