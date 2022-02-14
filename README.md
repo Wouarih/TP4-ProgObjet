@@ -165,4 +165,4 @@ Les enchères seront ouvertes et clôturées sur appel explicite de `demarrerEnc
 
 
 
-16. Dessinez le diagramme de classes de votre application.
+16. **Bonus** : Dessinez le diagramme de classes de votre application.
