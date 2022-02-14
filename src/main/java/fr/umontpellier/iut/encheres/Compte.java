@@ -1,4 +1,4 @@
-package fr.umontpellier.iut;
+package fr.umontpellier.iut.encheres;
 
 import java.util.ArrayList;
 
