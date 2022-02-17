@@ -37,4 +37,10 @@ class CompteTest {
         int solde = compte.crediterCompte(-50);
         assertEquals(50, solde);
     }
+
+    @Test
+    public void test_crediter_solde_valeur_positive(){
+        int solde = compte.crediterCompte(50);
+        assertEquals(150, solde);
+    }
 }

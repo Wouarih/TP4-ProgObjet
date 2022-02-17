@@ -41,12 +41,12 @@ public class Produit {
     }
 
     public void arreterEnchere() {
-        throw new RuntimeException("Méthode non implémentée ! Effacez cette ligne et écrivez le code nécessaire");
+        disponible = false;
     }
 
     // question 5
-    public int getPrixEnCours(){
-        if(listeOffresEmises.isEmpty()){
+    public int getPrixEnCours() {
+        if (listeOffresEmises.isEmpty()) {
             return prixInitial;
         }
         return offreGagnante.getPrixEnCours();
@@ -71,23 +71,32 @@ public class Produit {
 
     // vérifie si l'offre est correcte
     public boolean verifierOffre(OffreEnchere offre) {
-        if(this.disponible &&
+        boolean verification = false;
+        if (this.disponible && offre.getProduit() == this) {
+            if (offre.getPrixEnCours() == this.prixInitial) {
+
+                verification = true;
+
+            }
+        }
+        return verification;
     }
 
 
-    // fonction permettant la comparaison des Produits
-    // cette fonction doit rester intacte
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Produit produit)) return false;
-        return getNumero() == produit.getNumero();
+        // fonction permettant la comparaison des Produits
+        // cette fonction doit rester intacte
+        @Override
+        public boolean equals (Object o){
+            if (this == o) return true;
+            if (!(o instanceof Produit produit)) return false;
+            return getNumero() == produit.getNumero();
+        }
+
+        // fonction auxiliaire définissant le hashCode des objets de type Produit en respectant le contrat de equals(Object o)
+        // cette fonction doit rester intacte
+        @Override
+        public int hashCode () {
+            return Objects.hash(getNumero());
+        }
     }
 
-    // fonction auxiliaire définissant le hashCode des objets de type Produit en respectant le contrat de equals(Object o)
-    // cette fonction doit rester intacte
-    @Override
-    public int hashCode() {
-        return Objects.hash(getNumero());
-    }
-}

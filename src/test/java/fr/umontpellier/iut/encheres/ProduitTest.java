@@ -21,20 +21,20 @@ class ProduitTest {
         produit.demarrerEnchere();
     }
 
-    @Disabled
+
     @Test
     void test_demmarrer_enchere(){
         assertTrue(produit.estDisponible());
     }
 
-    @Disabled
+
     @Test
     void test_arreter_enchere(){
         produit.arreterEnchere();
         assertFalse(produit.estDisponible());
     }
 
-    @Disabled
+
     @Test
     void test_verifier_offre_enchere_non_demarree(){
         Produit p = new Produit(0, "", 0, 152);
