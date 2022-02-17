@@ -27,6 +27,10 @@ public class OffreEnchere {
         throw new RuntimeException("Méthode non implémentée ! Effacez cette ligne et écrivez le code nécessaire");
     }
 
+    public void setPrixEnCours(int prixEnCours) {
+        this.prixEnCours = prixEnCours;
+    }
+
     @Override
     public String toString() {
         return "OffreEnchere{" +

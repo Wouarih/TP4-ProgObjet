@@ -32,5 +32,9 @@ class CompteTest {
     }
 
     // complétez ici avec vos tests
-
+    @Test
+    public void test_crediter_solde_valeur_negative(){
+        int solde = compte.crediterCompte(-50);
+        assertEquals(50, solde);
+    }
 }

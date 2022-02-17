@@ -22,4 +22,9 @@ public class Compte {
     public OffreEnchere creerOffre(Produit produit, int prix, int prixMax) {
         throw new RuntimeException("Méthode non implémentée ! Effacez cette ligne et écrivez le code nécessaire");
     }
+
+    public int crediterCompte(int somme){
+        solde = solde + somme;
+        return solde;
+    }
 }

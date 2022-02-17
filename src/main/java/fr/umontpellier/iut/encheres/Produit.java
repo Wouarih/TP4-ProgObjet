@@ -1,14 +1,15 @@
 package fr.umontpellier.iut.encheres;
-
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Produit {
     private final int numero;
     private String description;
     private final int prixInitial;
-    private int pasEnchere;
+    private static int pasEnchere;
     private int coutParticipation;
-
+    private ArrayList<Integer> listeOffresEmises = new ArrayList<Integer>();
+    private OffreEnchere offreGagnante;
     private boolean disponible;
 
     public Produit(int numero, String description, int prixInitial, int coutParticipation) {
@@ -23,18 +24,20 @@ public class Produit {
         return numero;
     }
 
-    // question 1
-    public int getPasEnchere() {
+    // question 1 : afin que le pas d'enchère soit le même pour tous les produits, il faut déclarer
+    //l'attribut pasEnchere en static. En faisant cela nous sommes obligés de passer les méthodes
+    //setPasEnchere et getPasEnchere en static aussi sinon elles ne peuvent pas manipuler pasEnchere.
+    public static int getPasEnchere() {
         return pasEnchere;
     }
 
-    // question 1
-    public void setPasEnchere(int pas) {
+
+    public static void setPasEnchere(int pas) {
         pasEnchere = pas;
     }
 
     public void demarrerEnchere() {
-        throw new RuntimeException("Méthode non implémentée ! Effacez cette ligne et écrivez le code nécessaire");
+        disponible = true;
     }
 
     public void arreterEnchere() {
@@ -43,7 +46,10 @@ public class Produit {
 
     // question 5
     public int getPrixEnCours(){
-        throw new RuntimeException("Méthode non implémentée ! Effacez cette ligne et écrivez le code nécessaire");
+        if(listeOffresEmises.isEmpty()){
+            return prixInitial;
+        }
+        return offreGagnante.getPrixEnCours();
     }
 
     // pré-requis : l'offre passée en paramètre est valide
@@ -65,7 +71,7 @@ public class Produit {
 
     // vérifie si l'offre est correcte
     public boolean verifierOffre(OffreEnchere offre) {
-        throw new RuntimeException("Méthode non implémentée ! Effacez cette ligne et écrivez le code nécessaire");
+        if(this.disponible &&
     }
 
 
