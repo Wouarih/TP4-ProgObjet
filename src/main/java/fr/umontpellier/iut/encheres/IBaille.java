@@ -14,11 +14,18 @@ public class IBaille {
         Produit p3 = new Produit(3, "GameBoy Advance SP Tribal", 100, 10);
 
         Scanner saisie = new Scanner(System.in);
-        int entier = saisie.nextInt();
         System.out.println("Début des enchères");
 
-        saisie.nextInt(p1, 1000, 5000));
-        c2.creerOffre(p1, 1200, 2000);
+        p1.demarrerEnchere();
+        System.out.println(c1);
+        OffreEnchere offre = c1.creerOffre(p1, saisie.nextInt(), saisie.nextInt());
+        p1.ajouterOffre(offre);
+        p1.arreterEnchere();
+        System.out.println(offre);
+        System.out.println(c1);
+
+
+
 
 
 

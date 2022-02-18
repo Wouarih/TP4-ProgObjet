@@ -26,10 +26,10 @@ public class Compte {
     public OffreEnchere creerOffre(Produit produit, int prix, int prixMax) {
 
         OffreEnchere offre = new OffreEnchere(prix, prixMax, produit, this);
-        if(this.getSolde() >= offre.getPrixMax()+ produit.getCoutParticipation()){
-            if(offre.getPrixMax() >= offre.getPrixEnCours()){
+        if(this.getSolde() >= prixMax + produit.getCoutParticipation()){
+            if(prixMax >= offre.getPrixEnCours()){
                 if(produit.verifierOffre(offre)){
-                    this.solde = this.solde - prixMax - produit.getCoutParticipation();
+                    this.solde = this.solde - prix - produit.getCoutParticipation();
                     return offre;
                 }
             }
@@ -43,9 +43,13 @@ public class Compte {
         return solde;
     }
 
+    @Override
     public String toString() {
-        return  pseudo +
-                " a fait des enchères de " + mesEncheres +
-                " qui lui ont permis d'acquérir : " + produitsAchetés;
+        return "Compte{" +
+                "pseudo='" + pseudo + '\'' +
+                ", solde=" + solde +
+                ", mesEncheres=" + mesEncheres +
+                ", produitsAchetés=" + produitsAchetés +
+                '}';
     }
 }
