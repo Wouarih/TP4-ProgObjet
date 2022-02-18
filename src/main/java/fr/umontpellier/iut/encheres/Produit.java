@@ -8,9 +8,11 @@ public class Produit {
     private final int prixInitial;
     private static int pasEnchere;
     private int coutParticipation;
-    private ArrayList<Integer> listeOffresEmises = new ArrayList<Integer>();
+    private ArrayList<OffreEnchere> listeOffresEmises = new ArrayList<OffreEnchere>();
     private OffreEnchere offreGagnante;
     private boolean disponible;
+
+
 
     public Produit(int numero, String description, int prixInitial, int coutParticipation) {
         this.description = description;
@@ -36,11 +38,17 @@ public class Produit {
         pasEnchere = pas;
     }
 
+
+
     public void demarrerEnchere() {
         disponible = true;
     }
 
     public void arreterEnchere() {
+        if(!listeOffresEmises.isEmpty()) {
+            offreGagnante.getMonCompte().crediterCompte(offreGagnante.getPrixMax() + this.getCoutParticipation());
+            offreGagnante.getMonCompte().getProduitsAchetés().add(this);
+        }
         disponible = false;
     }
 
@@ -54,15 +62,32 @@ public class Produit {
 
     // pré-requis : l'offre passée en paramètre est valide
     public void ajouterOffre(OffreEnchere o) {
-        throw new RuntimeException("Méthode non implémentée ! Effacez cette ligne et écrivez le code nécessaire");
-    }
+
+        if(listeOffresEmises.isEmpty()) {
+            o.setEtatGagnant(true);
+            listeOffresEmises.add(o);
+            offreGagnante = o;
+        }
+
+        if(offreGagnante.getPrixMax() >= o.getPrixMax()){
+                offreGagnante.setPrixEnCours(o.getPrixMax());
+            }
+
+        else if(offreGagnante.getPrixMax()<o.getPrixMax()){
+                o.setEtatGagnant(true);
+                o.setPrixEnCours(offreGagnante.getPrixMax());
+            }
+        }
 
     public int getCoutParticipation() {
         return coutParticipation;
     }
 
     public OffreEnchere getOffreGagnante() {
-        throw new RuntimeException("Méthode non implémentée ! Effacez cette ligne et écrivez le code nécessaire");
+        if(!listeOffresEmises.isEmpty()){
+            return null;
+        }
+        return offreGagnante;
     }
 
     public boolean estDisponible() {
@@ -72,11 +97,12 @@ public class Produit {
     // vérifie si l'offre est correcte
     public boolean verifierOffre(OffreEnchere offre) {
         boolean verification = false;
-        if (this.disponible && offre.getProduit() == this) {
-            if (offre.getPrixEnCours() == this.prixInitial) {
-
+        if (this.estDisponible() && offre.getProduit() == this) {
+            if (listeOffresEmises.isEmpty() && offre.getPrixEnCours() >= this.getPrixEnCours()) {
                 verification = true;
-
+            }
+            else if(!listeOffresEmises.isEmpty() && offre.getPrixEnCours() >= this.getPrixEnCours() + pasEnchere){
+                verification = true;
             }
         }
         return verification;
@@ -98,5 +124,14 @@ public class Produit {
         public int hashCode () {
             return Objects.hash(getNumero());
         }
+
+    @Override
+    public String toString() {
+        return "Produit{" +
+                "offreGagnante=" + offreGagnante +
+                '}';
     }
+}
+
+
 

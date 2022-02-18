@@ -15,16 +15,37 @@ public class Compte {
         produitsAchetés = new ArrayList<>();
     }
 
+    public ArrayList<Produit> getProduitsAchetés() {
+        return produitsAchetés;
+    }
+
     public int getSolde() {
         return solde;
     }
 
     public OffreEnchere creerOffre(Produit produit, int prix, int prixMax) {
+
+        OffreEnchere offre = new OffreEnchere(prix, prixMax, produit, this);
+        if(this.getSolde() >= offre.getPrixMax()+ produit.getCoutParticipation()){
+            if(offre.getPrixMax() >= offre.getPrixEnCours()){
+                if(produit.verifierOffre(offre)){
+                    this.solde = this.solde - prixMax - produit.getCoutParticipation();
+                    return offre;
+                }
+            }
+        }
+
         return null;
     }
 
     public int crediterCompte(int somme){
         solde = solde + somme;
         return solde;
+    }
+
+    public String toString() {
+        return  pseudo +
+                " a fait des enchères de " + mesEncheres +
+                " qui lui ont permis d'acquérir : " + produitsAchetés;
     }
 }

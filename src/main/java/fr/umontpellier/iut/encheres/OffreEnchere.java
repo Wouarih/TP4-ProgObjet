@@ -15,20 +15,30 @@ public class OffreEnchere {
         this.monCompte = monCompte;
     }
 
+    public Compte getMonCompte() {
+        return monCompte;
+    }
+
     public Produit getProduit() {
+
         return produit;
     }
 
     public int getPrixEnCours() {
+
         return prixEnCours;
     }
 
     public int getPrixMax() {
+
         return prixMax;
     }
 
     public void setEtatGagnant(boolean etat) {
-        throw new RuntimeException("Méthode non implémentée ! Effacez cette ligne et écrivez le code nécessaire");
+        etatGagnant = etat;
+        if(!etat){
+            monCompte.crediterCompte(produit.getPrixEnCours() + produit.getCoutParticipation());
+        }
     }
 
     public void setPrixEnCours(int prixEnCours) {
