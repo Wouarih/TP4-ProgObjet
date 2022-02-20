@@ -26,11 +26,11 @@ public class Compte {
     public OffreEnchere creerOffre(Produit produit, int prix, int prixMax) {
 
         OffreEnchere offre = new OffreEnchere(prix, prixMax, produit, this);
-        if(this.getSolde() >= prixMax + produit.getCoutParticipation()){
-            if(prixMax >= offre.getPrixEnCours()){
-                if(produit.verifierOffre(offre)){
-                    this.solde = this.solde - prix - produit.getCoutParticipation();
-                    return offre;
+        if(produit.verifierOffre(offre)){
+            if(this.getSolde() >= prixMax + produit.getCoutParticipation()){
+                if(prixMax >= offre.getPrixEnCours()){
+                        this.solde = this.solde - prix - produit.getCoutParticipation();
+                        return offre;
                 }
             }
         }

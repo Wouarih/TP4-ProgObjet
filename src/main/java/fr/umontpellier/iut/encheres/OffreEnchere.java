@@ -37,7 +37,7 @@ public class OffreEnchere {
     public void setEtatGagnant(boolean etat) {
         etatGagnant = etat;
         if(!etat){
-            monCompte.crediterCompte(produit.getPrixEnCours() + produit.getCoutParticipation());
+            monCompte.crediterCompte(this.getPrixMax() - produit.getPrixEnCours());
         }
     }
 

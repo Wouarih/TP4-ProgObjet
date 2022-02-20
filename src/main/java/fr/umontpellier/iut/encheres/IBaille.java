@@ -18,11 +18,18 @@ public class IBaille {
 
         p1.demarrerEnchere();
         System.out.println(c1);
+        System.out.println(c2);
         OffreEnchere offre = c1.creerOffre(p1, saisie.nextInt(), saisie.nextInt());
         p1.ajouterOffre(offre);
-        p1.arreterEnchere();
         System.out.println(offre);
         System.out.println(c1);
+        OffreEnchere offrec2 = c2.creerOffre(p1, saisie.nextInt(), saisie.nextInt());
+        p1.ajouterOffre(offrec2);
+        p1.arreterEnchere();
+        System.out.println(offre);
+        System.out.println(offrec2);
+        System.out.println(c1);
+        System.out.println(c2);
 
 
 

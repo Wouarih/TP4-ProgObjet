@@ -39,14 +39,13 @@ public class Produit {
     }
 
 
-
     public void demarrerEnchere() {
         disponible = true;
     }
 
     public void arreterEnchere() {
         if(!listeOffresEmises.isEmpty()) {
-            offreGagnante.getMonCompte().crediterCompte(offreGagnante.getPrixEnCours() - offreGagnante.getPrixMax() + this.getCoutParticipation());
+            offreGagnante.getMonCompte().crediterCompte(offreGagnante.getPrixEnCours() - offreGagnante.getPrixMax());
             offreGagnante.getMonCompte().getProduitsAchetés().add(this);
         }
         disponible = false;
@@ -69,16 +68,16 @@ public class Produit {
             offreGagnante = o;
         }
 
-        if(offreGagnante.getPrixMax() >= o.getPrixMax()){
-                offreGagnante.setPrixEnCours(o.getPrixMax());
-                o.setEtatGagnant(true);
-                offreGagnante = o;
-            }
+        else if(offreGagnante.getPrixMax() >= o.getPrixMax()){
+            offreGagnante.setPrixEnCours(o.getPrixMax());
+        }
 
-        else if(offreGagnante.getPrixMax()<o.getPrixMax()){
+
+        else {
+                offreGagnante.setEtatGagnant(false);
                 o.setEtatGagnant(true);
-                o.setPrixEnCours(offreGagnante.getPrixMax());
                 offreGagnante = o;
+                o.setPrixEnCours(offreGagnante.getPrixMax());
             }
         }
 
