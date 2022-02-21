@@ -64,7 +64,6 @@ public class Produit {
 
         if(listeOffresEmises.isEmpty()) {
             o.setEtatGagnant(true);
-            listeOffresEmises.add(o);
             offreGagnante = o;
         }
 
@@ -72,13 +71,13 @@ public class Produit {
             offreGagnante.setPrixEnCours(o.getPrixMax());
         }
 
-
         else {
                 offreGagnante.setEtatGagnant(false);
                 o.setEtatGagnant(true);
+                o.setPrixEnCours(Math.max(offreGagnante.getPrixMax(), o.getPrixEnCours()));
                 offreGagnante = o;
-                o.setPrixEnCours(offreGagnante.getPrixMax());
             }
+            listeOffresEmises.add(o);
         }
 
     public int getCoutParticipation() {
@@ -86,7 +85,7 @@ public class Produit {
     }
 
     public OffreEnchere getOffreGagnante() {
-        if(!listeOffresEmises.isEmpty()){
+        if(listeOffresEmises.isEmpty()){
             return null;
         }
         return offreGagnante;
